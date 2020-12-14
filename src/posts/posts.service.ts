@@ -8,7 +8,8 @@ export class PostsService {
     constructor(@InjectModel(post.name) private postModel: Model<PostDocument>) { }
 
     async getAll(userid) {
-        return this.postModel.find({ _id: userid }).select('date name phone group description')
+        const posts = await this.postModel.find({ user: userid })
+        return posts
     }
     async addpost(params, userid) {
         const post = await new this.postModel(
