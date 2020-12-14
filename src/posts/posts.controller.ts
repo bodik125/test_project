@@ -14,8 +14,8 @@ export class PostsController {
 
     @UseGuards(JwtAuthGuard)
     @Post('/add')
-    addone(@Body() body){
-        return this.PostService.addpost(body)
+    addone(@Body() body @Request() req){
+        return this.PostService.addpost(body,  req.user.id)
     }
 
 }
