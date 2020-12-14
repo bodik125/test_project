@@ -33,6 +33,9 @@
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3"
   },
+  "engines": {
+    "node": "12.18.3"
+  },
   "devDependencies": {
     "@nestjs/cli": "^7.5.1",
     "@nestjs/schematics": "^7.1.3",
