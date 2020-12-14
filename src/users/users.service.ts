@@ -34,4 +34,7 @@ export class UsersService {
     async findOne(login: string): Promise<UserAuth | undefined> {
         return this.userModel.find({login: login});
       }
+    async getProfile(userid: string) {
+        return this.userModel.findOne({id: userid}).select('name date about')
+    }  
 }

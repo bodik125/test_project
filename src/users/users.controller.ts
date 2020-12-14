@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get,Request, Post, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/local-auth.guard';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -17,5 +18,10 @@ export class UsersController {
     @Post('/add')
     create(@Body() body){
         return this.UserService.create(body)
+    }
+    @UseGuards(JwtAuthGuard)
+    @Get('/profile')
+    getProfile(@Request() req) {
+        return  this.getProfile(req.user)
     }
 }
