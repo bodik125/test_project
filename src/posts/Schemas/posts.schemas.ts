@@ -16,7 +16,7 @@ export class post {
     @Prop()
     description: string
     @Prop({type: Array})
-    user
+    user: string
 }
 
 export const PostSchema = SchemaFactory.createForClass(post)
