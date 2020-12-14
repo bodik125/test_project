@@ -29,7 +29,7 @@ const options = {
       imports:[ConfigModule],
       useFactory:(configService: ConfigService)=>({
         secretOrPrivateKey: keys.jwtConstants.secret,
-        signOptions: {expiresIn: '60s'}
+        signOptions: {expiresIn: '3660s'}
       }),
       inject:[ConfigService]
     })
