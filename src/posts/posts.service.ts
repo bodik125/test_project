@@ -18,10 +18,27 @@ export class PostsService {
                 date: params.date,
                 group: params.group,
                 description: params.description,
-                user: params.userid
+                user: userid
             }
         ).save()
         return post
     }
 
+    async getOne(params){
+        const post = await this.postModel.findOne({_id: params})
+        return post
+    }
+
+    async editpost(params) {
+        const post = await new this.postModel(
+            {
+                name: params.name,
+                phone: params.phone,
+                date: params.date,
+                group: params.group,
+                description: params.description,
+            }
+        ).save()
+        return post
+    }
 }
