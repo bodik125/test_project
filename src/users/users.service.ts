@@ -24,7 +24,10 @@ export class UsersService {
         const hash = await bcrypt.hash(password, 10)
         const newuser = new this.userModel({
             login: params.login,
-            password: hash
+            password: hash,
+            about: params.about,
+            date: params.date,
+            name: params.name
         })
         console.log(newuser.password)
         console.log(" SADASDASDD ",newuser)
@@ -34,7 +37,9 @@ export class UsersService {
     async findOne(login: string): Promise<UserAuth | undefined> {
         return this.userModel.find({login: login});
       }
-    async getProfile(userid: string) {
-        return this.userModel.findOne({id: userid}).select('name date about')
+    async getProfiles(userid: string) {
+        const qwe = await this.userModel.findOne({_id: userid}).select('name date about')
+        console.log(qwe)
+        return qwe
     }  
 }
