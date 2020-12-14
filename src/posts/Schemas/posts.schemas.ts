@@ -15,6 +15,8 @@ export class post {
     group: string
     @Prop()
     description: string
+    @Prop({type: Array})
+    user
 }
 
 export const PostSchema = SchemaFactory.createForClass(post)

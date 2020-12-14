@@ -1,15 +1,18 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get,Request, Post, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/local-auth.guard';
 import { PostsService } from './posts.service';
 
 @Controller('posts')
 export class PostsController {
     constructor(private readonly PostService: PostsService){}
     
+    @UseGuards(JwtAuthGuard)
     @Get('/all')
-    getAll(){
-        return this.PostService.getAll()
+    getAll(@Request() req){
+        return this.PostService.getAll(req.user.id)
     }
 
+    @UseGuards(JwtAuthGuard)
     @Post('/add')
     addone(@Body() body){
         return this.PostService.addpost(body)

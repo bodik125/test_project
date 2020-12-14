@@ -7,10 +7,12 @@ export class UsersController {
     constructor(private readonly UserService: UsersService){
 
     }
+    @UseGuards(JwtAuthGuard)
     @Get()
     getAll(){
         return this.UserService.getall()
     }
+    @UseGuards(JwtAuthGuard)
     @Get('/users')
     getOne(id){
         return this.UserService.getOne(id)
