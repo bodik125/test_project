@@ -15,6 +15,8 @@ export class post {
     group: string
     @Prop()
     description: string
+    @Prop()
+    img: string
     @Prop({type: Array})
     user: string
 }

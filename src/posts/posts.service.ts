@@ -18,6 +18,7 @@ export class PostsService {
                 phone: params.phone,
                 date: params.date,
                 group: params.group,
+                img: params.img,
                 description: params.description,
                 user: userid
             }
