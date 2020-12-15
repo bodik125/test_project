@@ -1,7 +1,9 @@
 import { Body, Controller, Get,Request, Post, UseGuards, Req, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from 'src/auth/local-auth.guard';
+import { editFileName, imageFileFilter } from 'src/utils/file-upload.utils';
 import { PostsService } from './posts.service';
+import { diskStorage } from 'multer'
 
 @Controller('posts')
 export class PostsController {
@@ -20,7 +22,13 @@ export class PostsController {
 
     @UseGuards(JwtAuthGuard)
     @Post('/add')
-    @UseInterceptors(FileInterceptor('file'))
+    @UseInterceptors(FileInterceptor('image',{
+        storage: diskStorage({
+            destination: './src/upload',
+            filename: editFileName
+        }),
+        fileFilter: imageFileFilter
+    }))
     addone(@UploadedFile() file , @Body() body ,@Request() req){
         return this.PostService.addpost(file , body,  req.user.id)
     }

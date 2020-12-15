@@ -29,6 +29,7 @@
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.5.1",
     "@types/bcrypt": "^3.0.0",
+    "base64-img": "^1.0.4",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "mongoose": "^5.11.5",

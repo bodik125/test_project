@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { post, PostDocument } from './Schemas/posts.schemas';
 
+
 @Injectable()
 export class PostsService {
     constructor(@InjectModel(post.name) private postModel: Model<PostDocument>) { }
@@ -11,19 +12,34 @@ export class PostsService {
         const posts = await this.postModel.find({ user: userid })
         return posts
     }
+
     async addpost(file, params, userid) {
         console.log(file)
-        // const post = await new this.postModel(
-        //     {
-        //         name: params.name,
-        //         phone: params.phone,
-        //         date: params.date,
-        //         group: params.group,
-        //         img: file,
-        //         description: params.description,
-        //         user: userid
+
+        const base64img = require('base64-img')
+        const fs = require('fs')
+        const filepath = `./src/upload/${file.filename}`
+        var image = base64img.base64Sync(filepath)
+        
+        // await fs.readdirSync(`./src/upload/`).forEach((file) => {
+        //     if (file === "empty") {
+
+        //     } else {
+        //         console.log(file)
+        //       fs.unlinkSync(`./${file}`);
         //     }
-        // ).save()
+        //   })
+        const post = await new this.postModel(
+            {
+                name: params.name,
+                phone: params.phone,
+                date: params.date,
+                group: params.group,
+                img: image,
+                description: params.description,
+                user: userid
+            }
+        ).save()
         return post
     }
 
