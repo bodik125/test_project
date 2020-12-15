@@ -7,11 +7,11 @@ import { group, GroupDocument } from './Schemas/groups.schema';
 export class GroupsService {
     constructor(@InjectModel(group.name) private GroupsSchema: Model<GroupDocument>){}
 
-    async allgroups(){
-        return this.GroupsSchema.find().select('name')
+    async allgroups(userid){
+        return this.GroupsSchema.find({user:userid}).select('name user')
     }
-    async addgroup(name){
-        const group = await new this.GroupsSchema({name: name.name}).save()
+    async addgroup(name , userid){
+        const group = await new this.GroupsSchema({name: name.name, user: userid}).save()
         return group
     }
 }

@@ -8,7 +8,9 @@ export class group {
     @Prop()
     name: string
     @Prop({type: Array})
-    posts: string
+    posts: string,
+    @Prop()
+    user: string
 }
 
 export const GroupSchema = SchemaFactory.createForClass(group)
