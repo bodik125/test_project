@@ -11,7 +11,7 @@ export class GroupsService {
         return this.GroupsSchema.find().exec()
     }
     async addgroup(name){
-        const group = await new this.GroupsSchema(name).save()
+        const group = await new this.GroupsSchema({name: name.name}).save()
         return group
     }
 }
