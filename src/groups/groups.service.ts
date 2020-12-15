@@ -8,7 +8,7 @@ export class GroupsService {
     constructor(@InjectModel(group.name) private GroupsSchema: Model<GroupDocument>){}
 
     async allgroups(){
-        return this.GroupsSchema.find().exec()
+        return this.GroupsSchema.find().select('name')
     }
     async addgroup(name){
         const group = await new this.GroupsSchema({name: name.name}).save()
