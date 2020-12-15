@@ -15,6 +15,6 @@ export class GroupsController {
     @UseGuards(JwtAuthGuard)
     @Get('/all')
     allgroups(@Request() req){
-        return this.GroupService.allgroups(req.user)
+        return this.GroupService.allgroups(req.user.id)
     }
 }
