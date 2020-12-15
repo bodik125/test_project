@@ -48,6 +48,6 @@ export class PostsController {
     @UseGuards(JwtAuthGuard)
     @Get('/sortbygroup/:group')
     sortbygroup(@Param() param){
-        return this.PostService.sortbygroup(param)
+        return this.PostService.sortbygroup(param.group)
     }
 }
