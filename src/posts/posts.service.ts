@@ -44,6 +44,8 @@ export class PostsService {
     }
     
     async remove(params){
-        return await this.postModel.findOneAndRemove({_id: params})
+        const remove = await this.postModel.findOneAndRemove({_id: params.id})
+
+        return 
     }
 }
