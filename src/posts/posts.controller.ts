@@ -1,4 +1,5 @@
-import { Body, Controller, Get,Request, Post, UseGuards, Req, Param, Delete } from '@nestjs/common';
+import { Body, Controller, Get,Request, Post, UseGuards, Req, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from 'src/auth/local-auth.guard';
 import { PostsService } from './posts.service';
 
@@ -19,8 +20,9 @@ export class PostsController {
 
     @UseGuards(JwtAuthGuard)
     @Post('/add')
-    addone(@Body() body ,@Request() req){
-        return this.PostService.addpost(body,  req.user.id)
+    @UseInterceptors(FileInterceptor('file'))
+    addone(@UploadedFile() file , @Body() body ,@Request() req){
+        return this.PostService.addpost(file , body,  req.user.id)
     }
 
     @UseGuards(JwtAuthGuard)

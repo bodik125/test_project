@@ -11,18 +11,19 @@ export class PostsService {
         const posts = await this.postModel.find({ user: userid })
         return posts
     }
-    async addpost(params, userid) {
-        const post = await new this.postModel(
-            {
-                name: params.name,
-                phone: params.phone,
-                date: params.date,
-                group: params.group,
-                img: params.img,
-                description: params.description,
-                user: userid
-            }
-        ).save()
+    async addpost(file, params, userid) {
+        console.log(file)
+        // const post = await new this.postModel(
+        //     {
+        //         name: params.name,
+        //         phone: params.phone,
+        //         date: params.date,
+        //         group: params.group,
+        //         img: file,
+        //         description: params.description,
+        //         user: userid
+        //     }
+        // ).save()
         return post
     }
 
