@@ -30,16 +30,20 @@ export class PostsService {
         return post
     }
 
-    async editpost(params) {
-        const post = await new this.postModel(
+    async editpost(body, params) {
+        const post = await this.postModel.findOneAndUpdate({_id: params},
             {
-                name: params.name,
-                phone: params.phone,
-                date: params.date,
-                group: params.group,
-                description: params.description,
+                name: body.name,
+                phone: body.phone,
+                date: body.date,
+                group: body.group,
+                description: body.description,
             }
-        ).save()
+        )
         return post
+    }
+    
+    async remove(params){
+        return await this.postModel.findOneAndRemove({_id: params})
     }
 }
