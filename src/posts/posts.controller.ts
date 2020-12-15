@@ -24,7 +24,7 @@ export class PostsController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Post('/edit')
+    @Post('/edit/:id')
     editone(@Body() body){
         return this.PostService.editpost(body)
     }
