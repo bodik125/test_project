@@ -31,7 +31,7 @@ export class PostsService {
     }
 
     async editpost(body, params) {
-        const post = await this.postModel.findOneAndUpdate({_id: params},
+        const post = await this.postModel.findOneAndUpdate({_id: params.id},
             {
                 name: body.name,
                 phone: body.phone,
@@ -44,8 +44,8 @@ export class PostsService {
     }
     
     async remove(params){
-        const remove = await this.postModel.findOneAndRemove({_id: params.id})
+        const remove = await this.postModel.findOneAndDelete({_id: params.id})
 
-        return 
+        return "Succesfuly"
     }
 }
