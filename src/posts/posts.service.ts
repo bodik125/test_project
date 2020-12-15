@@ -66,4 +66,8 @@ export class PostsService {
 
         return "Succesfuly"
     }
+
+    async sortbygroup(group){
+        return await this.postModel.find({group: group})
+    }
 }

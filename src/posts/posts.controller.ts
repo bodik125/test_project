@@ -44,4 +44,10 @@ export class PostsController {
     removeone(@Param() Param){
         return this.PostService.remove( Param)
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('/sort/by/group/:group')
+    sortbygroup(@Param() param){
+        return this.PostService.sortbugroup()
+    }
 }
